@@ -1,6 +1,6 @@
 {
-  "name": "qiscus-sdk-javascript",
-  "version": "3.3.1",
+  "name": "qiscus-sdk-javascript-forked",
+  "version": "3.3.2",
   "description": "Qiscus Web SDK Core",
   "license": "MIT",
   "main": "dist/qiscus-sdk-javascript.umd.js",
@@ -84,5 +84,8 @@
     "typescript": "^3.7.5",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
