@@ -77,8 +77,6 @@ export class Room {
     // Ignore if not from the same room
     if (comment.room_id !== this.id) return
 
-    this.comments = Object.assign([], this.comments);
-
     // let's check first whether this room already has this specific comment
     const commentToFind = this.comments.find(
       (cmt) => cmt.unique_id === comment.unique_id
@@ -97,6 +95,8 @@ export class Room {
   }
 
   receiveComments(comments) {
+    this.comments = Object.assign([], this.comments)
+
     comments.forEach((comment) => {
       this.receiveComment(new Comment(comment))
     })

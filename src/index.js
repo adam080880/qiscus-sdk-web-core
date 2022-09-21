@@ -506,6 +506,8 @@ class QiscusSDK {
         return
       }
 
+      self.selected.comments = Object.assign([], self.selected.comments);
+
       this.lastReceiveMessages = comments
 
       self._callNewMessagesCallback(comments)
@@ -628,6 +630,9 @@ class QiscusSDK {
         isForEveryone,
         isHard,
       } = data
+
+      self.selected.comments = Object.assign([], self.selected.comments);
+
       if (self.selected && self.selected.id == roomId) {
         // loop through the array of unique_ids
         commentUniqueIds.map((id) => {
