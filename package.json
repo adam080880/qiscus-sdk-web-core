@@ -1,13 +1,14 @@
 {
-  "name": "qiscus-sdk-core",
-  "version": "2.11.1",
+  "name": "qiscus-sdk-javascript-forked",
+  "version": "2.11.2",
   "description": "Qiscus Web SDK Core",
   "license": "MIT",
   "main": "lib/index.js",
   "browser": "dist/qiscus-sdk-core.min.js",
   "files": [
     "lib",
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "build": "npm-run-all --parallel build:node build:web",

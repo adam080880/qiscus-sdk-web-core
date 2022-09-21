@@ -19,7 +19,6 @@ export function hookAdapterFactory () {
   }
 
   function trigger (hook, payload) {
-    console.log(hooks, hook, payload)
     return get(hook).reduce(
       (acc, fn) => Promise.resolve(acc).then(fn),
       Promise.resolve(payload)

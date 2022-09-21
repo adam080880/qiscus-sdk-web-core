@@ -1154,8 +1154,9 @@ class QiscusSDK {
     return this.userAdapter
       .loadComments(roomId, options)
       .then(async (comments_) => {
-        const comments = []
-        for (const comment of comments_) {
+        let comments = []
+
+        for (let comment of comments_) {
           comments.push(
             await this._hookAdapter.trigger(
               Hooks.MESSAGE_BEFORE_RECEIVED,
@@ -1168,6 +1169,7 @@ class QiscusSDK {
           this.selected.receiveComments(comments.reverse())
           this.sortComments()
         }
+
         return comments
       })
   }
