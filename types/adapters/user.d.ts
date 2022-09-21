@@ -1,0 +1,21 @@
+import { IQUserExtraProps, IAppConfig } from '../defs';
+import * as model from '../model';
+import * as Api from '../api';
+import { Storage } from '../storage';
+export declare type UserAdapter = ReturnType<typeof getUserAdapter>;
+declare const getUserAdapter: (s: Storage, api: Api.ApiRequester) => {
+    login(userId: string, userKey: string, { avatarUrl, extras, name }: IQUserExtraProps): Promise<model.IQAccount>;
+    clear(): void;
+    blockUser(userId: string): Promise<model.IQUser>;
+    getBlockedUser(page?: number, limit?: number): Promise<model.IQUser[]>;
+    getUserList(query?: string, page?: number, limit?: number): Promise<model.IQUser[]>;
+    unblockUser(userId: string): Promise<model.IQUser>;
+    setUserFromIdentityToken(identityToken: string): Promise<model.IQAccount>;
+    updateUser(name?: string | undefined, avatarUrl?: model.IQAccount['avatarUrl'], extras?: model.IQAccount['extras']): Promise<model.IQAccount>;
+    getNonce(): Promise<string>;
+    getUserData(): Promise<model.IQAccount>;
+    registerDeviceToken(deviceToken: string, isDevelopment?: boolean): Promise<boolean>;
+    unregisterDeviceToken(deviceToken: string, isDevelopment?: boolean): Promise<boolean>;
+    getAppConfig(): Promise<IAppConfig>;
+};
+export default getUserAdapter;

@@ -1,32 +1,33 @@
 export const Hooks = {
-  MESSAGE_BEFORE_SENT : "message::before-sent",
-  MESSAGE_BEFORE_RECEIVED : "message::before-received",
+  MESSAGE_BEFORE_SENT: 'message::before-sent',
+  MESSAGE_BEFORE_RECEIVED: 'message::before-received'
 }
 
-export function hookAdapterFactory() {
-  const hooks = {};
+export function hookAdapterFactory () {
+  const hooks = {}
 
   const get = (key) => {
-    if (!Array.isArray(hooks[key])) hooks[key] = [];
-    return hooks[key];
-  };
-
-  function intercept(hook, callback) {
-    get(hook).push(callback);
-
-    const index = get(hook).length;
-    return () => get(hook).splice(index, 1);
+    if (!Array.isArray(hooks[key])) hooks[key] = []
+    return hooks[key]
   }
 
-  function trigger(hook, payload) {
+  function intercept (hook, callback) {
+    get(hook).push(callback)
+
+    const index = get(hook).length
+    return () => get(hook).splice(index, 1)
+  }
+
+  function trigger (hook, payload) {
+    console.log(hooks, hook, payload)
     return get(hook).reduce(
       (acc, fn) => Promise.resolve(acc).then(fn),
       Promise.resolve(payload)
-    );
+    )
   }
 
   return {
     trigger,
-    intercept,
-  };
+    intercept
+  }
 }

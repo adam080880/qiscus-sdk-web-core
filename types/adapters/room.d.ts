@@ -1,0 +1,20 @@
+import * as model from '../model';
+import * as Api from '../api';
+import { Storage } from '../storage';
+declare const getRoomAdapter: (s: Storage, api: Api.ApiRequester) => {
+    addParticipants(roomId: number, participantIds: string[]): Promise<model.IQParticipant[]>;
+    removeParticipants(id: model.IQChatRoom['id'], participantIds: model.IQParticipant['id'][]): Promise<model.IQParticipant[]>;
+    chatUser(userId: model.IQUser['id'], extras?: model.IQChatRoom['extras']): Promise<model.IQChatRoom>;
+    clearRoom(uniqueIds: string[]): Promise<void>;
+    createGroup(name: model.IQChatRoom['name'], userIds: model.IQUser['id'][], avatarUrl?: model.IQChatRoom['avatarUrl'], extras?: model.IQChatRoom['extras']): Promise<model.IQChatRoom>;
+    getChannel(uniqueId: model.IQChatRoom['uniqueId'], name?: string | undefined, avatarUrl?: model.IQChatRoom['avatarUrl'], extras?: model.IQChatRoom['extras']): Promise<model.IQChatRoom>;
+    getParticipantList(uniqueId: string, page?: number | undefined, limit?: number | undefined, sorting?: "asc" | "desc" | undefined): Promise<model.IQParticipant[]>;
+    getRoom(roomId: number): Promise<[model.IQChatRoom, model.IQMessage[]]>;
+    getRoomInfo(roomIds?: number[] | undefined, roomUniqueIds?: string[] | undefined, page?: number | undefined, showRemoved?: boolean, showParticipants?: boolean): Promise<model.IQChatRoom[]>;
+    getRoomList(showParticipants?: boolean | undefined, showRemoved?: boolean | undefined, showEmpty?: boolean | undefined, page?: number | undefined, limit?: number | undefined): Promise<model.IQChatRoom[]>;
+    getUnreadCount(): Promise<number>;
+    getRoomUnreadCount(): Promise<number>;
+    updateRoom(roomId: model.IQChatRoom['id'], name?: string | undefined, avatarUrl?: model.IQChatRoom['avatarUrl'], extras?: model.IQChatRoom['extras']): Promise<model.IQChatRoom>;
+};
+export default getRoomAdapter;
+export declare type RoomAdapter = ReturnType<typeof getRoomAdapter>;
