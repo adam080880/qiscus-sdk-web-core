@@ -1345,6 +1345,10 @@ class QiscusSDK {
     )
     messageData = self.prepareCommentToBeSubmitted(messageData)
 
+    if (self?.selected?.comments) {
+      self.selected.comments = Object.assign([], self.selected.comments)
+    }
+
     if (self.selected) self.selected.comments.push(messageData)
 
     return this.userAdapter
