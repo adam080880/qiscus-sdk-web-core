@@ -1,6 +1,6 @@
 {
   "name": "qiscus-sdk-javascript-forked",
-  "version": "2.11.6",
+  "version": "2.11.7",
   "description": "Qiscus Web SDK Core",
   "license": "MIT",
   "main": "lib/index.js",
