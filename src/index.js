@@ -345,6 +345,10 @@ class QiscusSDK {
       statusLogin: () => this.isLogin
     })
     this.syncAdapter.on('message.new', async (message) => {
+      if (this.selected?.comments) {
+        this.selected.comments = Object.assign([], this.selected.comments)
+      }
+
       message = await this._hookAdapter.trigger(
         Hooks.MESSAGE_BEFORE_RECEIVED,
         message
